@@ -1,0 +1,28 @@
+{
+  "name": "website-starter",
+  "version": "0.0.1",
+  "description": "A new website",
+  "main": "index.html",
+  "scripts": {
+    "start": "npm run sass && run-p sass-watch html-watch bs js",
+    "js": "webpack --entry ./src/js/main.js --output ./docs/js/main.js --mode development -w",
+    "build": "npm run html && npm run sass",
+    "bs": "browser-sync start --server docs/ --files docs/*.{css,html} --serveStatic node_modules",
+    "sass": "node-sass src/scss/styles.scss docs/css/styles.css --output-style compressed",
+    "sass-watch": "npm run sass -- -w src/scss",
+    "html": "run-p index imprint",
+    "html-watch": "watch 'npm run html' src --interval 0.1",
+    "index": "html-include-comment src/index.html docs/index.html",
+    "imprint": "html-include-comment src/imprint.html docs/imprint.html"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "browser-sync": "2.24.6",
+    "html-include-comment": "0.0.10",
+    "node-sass": "4.9.2",
+    "npm-run-all": "4.1.3",
+    "watch": "1.0.2",
+    "webpack": "4.16.5",
+    "webpack-cli": "3.1.0"
+  }
+}
